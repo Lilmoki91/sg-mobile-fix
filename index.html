@@ -1,0 +1,840 @@
+
+<!-- <h2 data-i18n="servicesTitle">Perkhidmatan Pembaikan Telefon</h2>
+<button data-i18n="shareBtn">Kongsi</button> -->
+
+
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SG Mobile Fix Setia Alam - Premium Phone Service Repair</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link 
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- sudah dipisahkan! -->
+<!--<script>-->
+
+<!-- j.s tail wild -->
+
+<!--</script>-->
+
+ 
+<!-- sudah dipisahkan! -->
+<!--<style>-->
+
+
+<!-- css -->
+
+
+<!--</style>-->
+
+
+<!--- navbar menu ---->
+</head>
+
+<body class="font-sans bg-gray-50 text-gray-800">
+
+  <nav class="sticky top-0 z-50 bg-white shadow-md ">
+    <div class="container mx-auto px-3 flex justify-between items-center py-1">
+      
+      <div class="flex items-center">
+        <img src="https://i.postimg.cc/LXBwsj4D/file_0000000089b871fabddc7461e7799b4c.png" 
+             alt="SG Mobile Fix Setia Alam" 
+             class="h-20 md:h-12 w-auto object-contain">
+       </div>
+
+<!-- share button -->
+      <div class="flex items-center">
+        <button id="share-btn" class="share-btn bg-primary text-white px-4 py-2 rounded-lg flex items-center mr-3 hover:bg-opacity-90 transition">
+          <i class="fas fa-share mr-2"></i> Share
+        </button>
+
+<!-- humburger Button -->
+        <button id="hamburger" class="md:hidden text-2xl text-primary hover:text-opacity-80 transition">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    
+<!--📌 Mobile menu humburger (hidden by default, shown when hamburger clicked) -->
+    <div id="mobile-menu" class="hidden md:block bg-gray-50 border-t my-4">
+      <div class="container mx-auto px-3 py-4 grid grid-cols-2 md:grid-cols-3 gap-4 bg-primary text-white font-semibold text-sm w-auto">
+
+<!-- lokasi map -->
+        <a href="#lokasi" class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-map-marker-alt text-red-500 mr-3 text-xl"></i>
+          <span class="font-medium">Lokasi GPS Kedai</span>
+        </a>
+                   
+<!-- Email -->
+       <a href="mailto:sgmobile@yahoo.com" class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fab fa-yahoo text-purple-500 mr-3 text-xl"></i>
+          <span class="font-medium">Email Kedai</span>
+        </a>
+        
+<!-- WhatsApp -->
+        <a href="https://wa.me/60122626434?text=Hello,%20 Sg%20Mobile%20Fix.%20Saya%20nak%20*_servis%20handphone._*%20"
+          class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fab fa-whatsapp text-green-400 mr-3 text-xl"></i>
+          <span class="font-medium">WhatsApp Kedai</span>
+        </a>
+        
+<!-- Senior Technician -->
+        <a href="https://wa.me/60122626434?text=Hello,%20saya%20nak%20berbincang%20dengan%20*_Senior%20Technician._*" 
+           class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-tools text-orange-500 mr-3 text-xl"></i>
+          <span class="font-medium">Senior Technician</span>
+        </a>
+        
+<!-- Senarai perkhidmatan -->
+        <a href="#senarai-perkhidmatan" class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-table text-blue-500 mr-3 text-xl"></i>
+          <span class="font-medium">Senarai Perkhidmatan</span>
+        </a>
+        
+<!-- Appointment -->
+        <a href="https://wa.me/60122626434?text=Hello,%20saya%20nak%20buat%20*_appointment_*%20untuk%20servis%20handphone." 
+           class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-calendar-check text-teal-500 mr-3 text-xl"></i>
+          <span class="font-medium">Buat Appointment</span>
+        </a>
+
+<!-- HTML: Theme Toggle & Language Switcher -->
+<a href="#" id="theme-toggle" class="mobile-menu-link flex items-center p-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+  <i class="fas fa-moon text-yellow-500 mr-3 text-xl dark:block hidden"></i>
+  <i class="fas fa-sun text-yellow-500 mr-3 text-xl dark:hidden block"></i>
+  <span class="font-medium dark:text-gray-200">Night mode/ Light mode</span>
+</a>
+
+<a href="#" id="language-toggle" class="mobile-menu-link flex items-center p-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+  <i class="fas fa-globe-americas text-blue-500 mr-3 text-xl"></i>
+  <span class="font-medium dark:text-gray-200" id="language-text">Bahasa Malaysia/ English</span>
+</a>
+
+<!-- PWA Manifest & Service Worker Registration -->
+<link rel="manifest" href="/manifest.json">
+
+
+<!--🎀 Bisnes Card -->
+<a href="#Business Card" class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-briefcase mr-3 text-xl" style="color:#D2691E;"></i>
+          <span class="font-medium">Business Card</span>
+        </a>
+
+<!-- link tree -->
+<a href="https://linktr.ee/sgsetiaalam?utm_source=linktree_profile_share&ltsid=cff0c3e9-e905-4185-b214-928f6664e58 " class="mobile-menu-link flex items-center p-3 hover:bg-gray-700 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-tree  mr-3 text-xl" style="color: turquoise;"></i>
+          <span class="font-medium">Link Tree</span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+
+    
+<!--📌 Mobile Menu (hidden by default, shown when hamburger clicked) -->
+    <div id="mobile-menu" class="hidden md:block bg-gray-50 border-t">
+      <div class="container mx-auto px-4 py-2 grid grid-cols-1 md:grid-cols-3 gap-2">
+        <a href="#lokasi" class="flex items-center p-3 hover:bg-gray-100 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-map-marker-alt text-red-500 mr-3 text-xl"></i>
+          <span class="font-medium">Lokasi GPS Kedai</span>
+        </a>
+
+
+        
+        <a href="mailto:sgmobile@yahoo.com" class="flex items-center p-3 hover:bg-gray-100 rounded-lg transition hover:scale-[1.02]">
+          <i class="fab fa-yahoo text-purple-500 mr-3 text-xl"></i>
+          <span class="font-medium">Email Kedai</span>
+        </a>
+        
+        <a href="https://wa.me/60122626434?text=Hai,%20Sg%20Mobile%30Fix.%20Saya%20nak%20*_baiki%20%20handphone._*%20"
+          class="flex items-center p-3 hover:bg-gray-100 rounded-lg transition hover:scale-[1.02]">
+          <i class="fab fa-whatsapp text-green-500 mr-3 text-xl"></i>
+          <span class="font-medium">WhatsApp Kedai</span>
+        </a>
+        
+        <a
+href="https://wa.me/60122626434?text=Hai,%20saya%20nak%20berbincang%20dengan%20*_Senior%20Technician._*%20" 
+           class="flex items-center p-3 hover:bg-gray-100 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-tools text-orange-500 mr-3 text-xl"></i>
+          <span class="font-medium">Senior Technician</span>
+        </a>
+        
+<!-- Perbaikan: Tambah ID target untuk scroll ke senarai perkhidmatan -->
+        <a href="#senarai-perkhidmatan" class="flex items-center p-3 hover:bg-gray-100 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-table text-blue-500 mr-3 text-xl"></i>
+          <span class="font-medium">Senarai Perkhidmatan</span>
+        </a>
+        
+        <a href="https://wa.me/60122626434?text=Hai,%20saya%20nak%20buat%20appointment%20untuk%20*_servis%20telefon_.*%20" 
+           class="flex items-center p-3 hover:bg-gray-100 rounded-lg transition hover:scale-[1.02]">
+          <i class="fas fa-calendar-check text-teal-500 mr-3 text-xl"></i>
+          <span class="font-medium">Buat Appointment</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+
+<!--📌 Hero Section KAD PERTAMA -->
+  <section class="bg-gradient-to-r from-cyan-400 to-pink-400 text-white py-5 px-2">
+    <div class="container mx-auto px-4 text-center mt-0 mb-10">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4"><div class="max-w-auto mx-auto"><img src="https://i.postimg.cc/LXBwsj4D/file_0000000089b871fabddc7461e7799b4c.png" 
+             alt="SG Mobile Fix Setia Alam" 
+             class="h-max md:h-12 w-auto object-contain">Perkhidmatan Servis Baiki Telefon Profesional</h1>
+
+        <p class="text-xl mb-8 opacity-90">
+          <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>
+          <a href="https://maps.app.goo.gl/ACMa62PiTNtAA1QH7?g_st=atm" class="underline hover:text-white transition text-blue-700">
+            55-G Jalan Setia Perdana BA U13/BA Setia Alam, Bandar Setia Alam, 40170, Selangor
+          </a>
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="https://wa.me/60122626434?text=Hello,%20 Sg%20Mobile%20Fix.%20Saya%20nak%20*_servis%20handphone._*%20" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center">
+            <i class="fab fa-whatsapp mr-2 text-2xl"></i> WhatsApp Sekarang
+          </a>
+
+          <a href="#lokasi" class="bg-red-500 text-gray-100 font-bold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition duration-300 hover:bg-red-600 flex items-center justify-center">
+            <i class="fas fa-map-marked-alt mr-2"></i> Lihat Lokasi Kedai
+          </a>
+
+          </p>
+
+
+<b class="mt-2 text-primary text-lg bg-white rounded-xl text-center"><i class= "fas fa-clock mr-2 text-2xl mb-1 text-center"></i>
+                <span class="translate-text" data-en="Operating Hours:" data-my="Waktu Operasi:">Waktu Operasi:</span>
+                10AM - 8PM (Everyday)!                          </b>
+
+       </div>
+      </div>
+    </div>
+  </section>
+
+<!--- BISNES KAD --->
+<section id = "Business Card"
+class="container mx-auto text-center mt-16 px-3 mb-12">
+    <h1 class="text-3xl font-bold text-primary mb-6">
+        Business Card
+    </h1>
+
+    <div class="flex flex-col items-center justify-center gap-4 max-w-full mx-auto">
+        <img src="https://i.postimg.cc/pXwSDPGc/1769152996380.png" 
+             alt="Bisnes kad" 
+             class="h-auto max-w-xs md:max-w-md object-contain rounded-lg shadow-md">
+        
+        <div class="text-2xl font-semibold text-primary mt-4">Vs Card</div>
+
+<div class = "text-center text-xm">
+<div class="actions">
+    <button class="share" onclick="shareCard()"><i class= "fas fa-share"></i> SHARE</button>
+    <button class="pdf" onclick="saveCard()"><i class= "fas fa-copy"></i> SAVE CARD</button
+</div></div></section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+
+  <!-- Testimoni Video Section -->
+  <section id="testimoni" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-primary mb-12">Testimoni Pelanggan</h2>
+      <div class="max-w-2xl mx-auto bg-gray-100 rounded-2xl overflow-hidden shadow-xl">
+        <div class="aspect-w-9 aspect-h-16">
+          <div class="bg-gray-800 flex items-center justify-center h-full text-white">
+            <div class="text-center p-8">
+              <i class="fab fa-tiktok text-6xl mb-4 text-pink-500"></i>
+              <p class="text-xl font-medium">Video Testimoni Pelanggan</p>
+              <p class="mt-2 opacity-75">Lihat pengalaman pelanggan kami</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Links -->
+<!-- Social Media Links -->
+<section class="py-16 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-primary mb-12">Ikuti Kami di Media Sosial</h2>
+    
+    <!-- Container dengan scroll horizontal -->
+    <div class="flex overflow-x-auto pb-4 space-x-6 px-4
+                [&::-webkit-scrollbar]:h-2
+                [&::-webkit-scrollbar-track]:bg-gray-100
+                [&::-webkit-scrollbar-thumb]:bg-gray-300
+                [&::-webkit-scrollbar-thumb]:rounded-full
+                [&::-webkit-scrollbar-thumb:hover]:bg-gray-400
+                snap-x snap-mandatory
+                cursor-grab active:cursor-grabbing">
+      
+      <!-- Item pertama -->
+      <a href="https://www.tiktok.com/@sgmobilesetiaalam?lang=en&is_from_webapp=1&sender_device=mobile&sender_web_id=7597472431498937857" 
+         class="flex-shrink-0 w-30 bg-white rounded-full py-4 px-9 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center snap-center">
+        <div class="w-16 h-16 rounded-full bg-black flex items-center justify-center mb-3">
+          <i class="fab fa-tiktok text-white text-3xl"></i>
+        </div>
+        <span class="font-semibold text-gray-800">TikTok</span>
+      </a>
+      
+      <!-- Item kedua -->
+      <a href="https://www.facebook.com/profile.php?id=61575714642080" 
+         class="flex-shrink-0 w-38 bg-white rounded-full py-4 px-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center snap-center">
+        <div class="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center mb-3">
+          <i class="fab fa-facebook-f text-white text-3xl"></i>
+        </div>
+        <span class="font-semibold text-gray-800">Facebook</span>
+      </a>
+      
+      <!-- Item ketiga -->
+      <a href="https://wa.me/60122626434" 
+         class="flex-shrink-0 w-38 bg-white rounded-full py-4 px-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center snap-center">
+        <div class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center mb-3">
+          <i class="fab fa-whatsapp text-white text-3xl"></i>
+        </div>
+        <span class="font-semibold text-gray-800">WhatsApp</span>
+      </a>
+      
+      <!-- Item keempat -->
+      <a href="https://www.instagram.com/sgmobilefixsetiaalam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+         class="flex-shrink-0 w-38 bg-white rounded-full py-4 px-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center snap-center">
+        <div class="w-16 h-16 rounded-full bg-pink-400 flex items-center justify-center mb-3">
+          <i class="fab fa-instagram text-white text-3xl"></i>
+        </div>
+        <span class="font-semibold text-gray-800">Instagram</span>
+      </a>
+      
+    </div>
+    
+    <!-- Optional: Navigation hint untuk mobile -->
+    <div class="text-center mt-6 text-gray-500 text-sm">
+      <p class="hidden md:block">Gunakan mouse wheel atau scroll horizontal</p>
+      <p class="md:hidden">Scroll ke kiri atau kanan untuk melihat lebih banyak</p>
+    </div>
+  </div>
+</section>
+
+  <!-- About Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto bg-gradient-to-br from-pink-100 to-blue-100 rounded-2xl shadow-xl overflow-hidden">
+        <div class="p-8 md:p-12">
+          <h2 class="text-3xl font-bold text-primary mb-6 flex items-center">
+            <i class="fas fa-info-circle mr-3 text-secondary"></i>
+            Tentang Kami
+          </h2>
+          <p class="text-lg mb-4 leading-relaxed">
+            SG Mobile Setia Fix Alam telah berkhidmat dalam bidang pembaikan telefon pintar sejak 2018. Kami menawarkan servis profesional dengan menggunakan komponen berkualiti tinggi dan peralatan moden.
+          </p>
+          <p class="text-lg mb-4 leading-relaxed">
+            Dengan pengalaman lebih daripada 5 tahun, kami telah membaiki ribuan peranti untuk pelanggan di seluruh Setia Alam dan sekitarnya. Setiap servis datang dengan jaminan kualiti sehingga 6 bulan. Daripada SG Mobile Fix Setia Alam - LCD Screen, Battery Repair iPhone & Phone Shah Alam
+
+
+
+         </p>
+          <p class="text-xs mb-4 leading-relaxed font-semibold text-blue-500 bg-yellow-50 px-2 py-4"><i>
+
+"SG Mobile Fix Setia Alam - LCD Screen, Battery Repair iPhone & Phone Setia Alam. 
+<a class = "underline hover text-pink-400 mr-2">PENGALAMAN & KEPAKARAN:</a> Juruteknik kami yang terlatih dan berpengalaman mampu menangani pelbagai jenis masalah iPhone dan Android. 
+ <a class = "underline hover text-pink-400 mr-2">HARGA BERPATUTAN:</a> Kami menawarkan harga yang kompetitif untuk semua perkhidmatan kami, memastikan nilai terbaik untuk wang anda.
+<a class = "underline hover text-pink-400 mr-2">KUALITI DIJAMIN:</a> Kami menggunakan alat ganti berkualiti tinggi dan memastikan setiap pembaikan dilakukan dengan teliti dan tepat. 
+<a class = "underline hover text-pink-400 mr-2">PERKHIDMATAN PANTAS:</a> Kebanyakan pembaikan dapat diselesaikan dalam masa 1-2 jam, bergantung kepada jenis kerosakan. 
+<a class = "underline hover text-pink-400 mr-2">KAKITANGAN MESRA:</a> Kakitangan kami yang terlatih dan 
+mesra sedia membantu anda dengan apa-apa masalah telefon anda, memberikan nasihat yang jujur dan profesional."
+
+          </i></p>
+          <div>
+          <p class="text-lg font-semibold text-secondary text-center">
+
+            <i class="fas fa-star text-yellow-400 mr-2"></i>
+            Keutamaan kami adalah kepuasan pelanggan dan kualiti servis yang tiada tandingan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<!--- 📌 senarai perkhidmatan --->
+<section id="senarai-perkhidmatan" class="py-16 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+        Perkhidmatan Pembaikan Telefon SG Mobile Fix
+      </h2>
+      <p class="text-gray-600 max-w-3xl mx-auto">
+        Kami menyediakan pelbagai perkhidmatan pembaikan telefon berkualiti tinggi dengan harga berpatutan
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-3 mb-10 px-4">
+      <button class="filter-btn active px-5 py-2 rounded-full bg-primary text-white font-medium hover:bg-opacity-90 transition" data-filter="all">
+        Semua Perkhidmatan
+      </button>
+      <button class="filter-btn px-5 py-2 rounded-full bg-white border border-gray-300 font-medium hover:bg-primary transition" data-filter="iphone">
+        iPhone
+      </button>
+      <button class="filter-btn px-5 py-2 rounded-full bg-white border border-gray-300 font-medium hover:bg-primary transition" data-filter="android">
+        Android
+      </button>
+      <button class="filter-btn px-5 py-2 rounded-full bg-white border border-gray-300 font-medium hover:bg-primary transition" data-filter="tablet">
+        Tablet
+      </button>
+      <button class="filter-btn px-5 py-2 rounded-full bg-white border border-gray-300 font-medium hover:bg-primary transition" data-filter="aksesori">
+        Aksesori Original
+      </button>
+    </div>
+
+    <!-- Service Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 service-grid">
+      
+<!-- Item 1️⃣: Penggantian Bateri -->
+      <div class="service-card bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="iphone android tablet">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center">
+              <i class="fas fa-battery-full text-yellow-600 text-xl"></i>
+            </div>
+            <span class="bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 150.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-100 mb-3 group-hover:text-yellow-600 transition group-hover:bg-yellow-50 rounded-xl px-5 py-2 transition text-center">
+            Penggantian Bateri
+          </h3>
+          <p class=" text-gray-100 mb-4">
+            Jenis Bateri Kebanyakan peranti iPhone menggunakan bateri Lithium-ion (Li-ion) atau Lithium Polymer (Li-Po). Kedua-dua jenis ini menawarkan kecekapan tenaga tinggi, berat ringan, dan hayat bateri yang panjang.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Hello,%20saya%20nak%20tanya%20tentang%20perkhidmatan:%20*_Penggantian%20Bateri._*" 
+               class="inline-flex items-center text-white font-semibold hover:text-opacity-80 transition bg-green-500 px-2 py-1 rounded-full text-sm">
+              Buat Tempahan
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded text-ms "><i class="fab fa-apple"></i></span>
+              <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-ms"><i class="fab fa-android"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Item 2️⃣: Pembaikan Kamera -->
+      <div class="service-card bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="iphone android">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+              <i class="fas fa-camera text-blue-600 text-xl"></i>
+            </div>
+            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 120.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-100 mb-3 group-hover:text-blue-700 transition group-hover:bg-blue-100 rounded-xl px-5 py-2 transition text-center">
+            Pembaikan Kamera 
+          </h3>
+          <p class="text-gray-100 mb-4">
+            Proses membaiki atau menggantikan komponen kamera pada peranti seperti telefon iPhone, iPad, bimbit, tablet, atau kamera digital. Kamera yang rosak boleh menyebabkan kualiti gambar yang rendah.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Hello,%20saya%20nak%20tanya%20tentang%20perkhidmatan:%20*_Pembaikan%20Kamera._*" 
+               class="inline-flex items-center text-white font-semibold hover:text-opacity-80 transition bg-green-500 px-2 py-1 rounded-full text-sm">
+              Buat Tempahan
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded text-ms "><i class="fab fa-apple"></i></span>
+              <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-ms"><i class="fab fa-android"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Item 3️⃣: Pembaikan Bekas -->
+      <div class="service-card bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="iphone android">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+              <i class="fas fa-mobile-alt text-green-600 text-xl"></i>
+            </div>
+            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 150.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-100 mb-3 group-hover:text-green-600 transition group-hover:bg-green-100 rounded-xl px-5 py-2 transition text-center">
+            Pembaikan Bekas
+          </h3>
+          <p class="text-gray-100 mb-4">
+            Proses memperbaiki atau menggantikan bahagian luar peranti seperti telefon bimbit, iPhone, iPad, tablet. Kerusakan pada casing boleh berlaku akibat jatuh, hentakan, atau penggunaan harian yang kasar.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Hello,%20saya%20nak%20tanya%20tentang%20perkhidmatan%20*Pembaikan%20Bekas.*" 
+               class="inline-flex items-center text-white font-semibold hover:text-opacity-80 transition bg-green-500 px-2 py-1 rounded-full text-sm">
+              Buat Tempahan
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded text-ms "><i class="fab fa-apple"></i></span>
+              <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-ms"><i class="fab fa-android"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Item 4️⃣: Pembaikan Port Pengecasan -->
+      <div class="service-card bg-gradient-to-br from-violet-100 to-cyan-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="iphone android tablet">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+              <i class="fas fa-plug text-purple-600 text-xl"></i>
+            </div>
+            <span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 150.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition">
+            Pembaikan Port Pengecasan
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Proses memperbaiki atau menggantikan port pengecasan pada peranti seperti tablet, iPhone, iPad. Port pengecasan yang rosak boleh menyebabkan masalah pengecasan, yang boleh mengganggu penggunaan peranti.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Saya%20nak%20tanya%20tentang%20perkhidmatan%20Pembaikan%20Port%20Pengecasan" 
+               class="inline-flex items-center text-primary font-semibold hover:text-opacity-80 transition">
+              Buat Tempahan
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">iPhone</span>
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Android</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5: Imbasan Diagnostik -->
+      <div class="service-card bg-gradient-to-br from-violet-100 to-cyan-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="iphone android tablet">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
+              <i class="fas fa-search text-red-600 text-xl"></i>
+            </div>
+            <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 80.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition">
+            Imbasan Diagnostik
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Proses mengesan dan mendiagnosis masalah dalam peranti elektronik iPad, IPhone, android, atau tablet. Menggunakan perisian atau alat khusus yang dapat mengidentifikasi isu-isu pada peranti secara mendalam.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Saya%20nak%20tanya%20tentang%20perkhidmatan%20Imbasan%20Diagnostik" 
+               class="inline-flex items-center text-primary font-semibold hover:text-opacity-80 transition">
+              Buat Tempahan
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">iPhone</span>
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Android</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6: Pembaikan Skrin -->
+      <div class="service-card bg-gradient-to-br from-violet-100 to-cyan-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="iphone android tablet">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center">
+              <i class="fas fa-mobile text-indigo-600 text-xl"></i>
+            </div>
+            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 150.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition">
+            Pembaikan/Penggantian Skrin
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Proses memperbaiki atau menggantikan skrin pada iPhone, iPad, tablet dan Phone. Skrin yang rosak boleh mengganggu penggunaan dan menjejaskan fungsinya. Retak, Tidak Responsif, Berkelip atau Tompok Gelap.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Saya%20nak%20tanya%20tentang%20perkhidmatan%20Pembaikan%20Skrin" 
+               class="inline-flex items-center text-primary font-semibold hover:text-opacity-80 transition">
+              Buat Tempahan
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">iPhone</span>
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Android</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 7: Button iPhone Original -->
+      <div class="service-card bg-gradient-to-br from-violet-100 to-cyan-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="aksesori">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center">
+              <i class="fas fa-circle text-pink-600 text-xl"></i>
+            </div>
+            <span class="bg-pink-50 text-pink-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 180.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition">
+            Button iPhone Original
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Penukaran Button Original Apple iPhone, iPad jenis Genuine Apple Part, hanya 1 jam. Selepas penukaran dalam setting akan tertera 'Genuine Apple Part' dan tarikh penukaran Button original tersebut.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Saya%20nak%20tanya%20tentang%20perkhidmatan%20Button%20iPhone%20Original" 
+               class="inline-flex items-center text-primary font-semibold hover:text-opacity-80 transition">
+              Buat Tempahan
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">Original</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 8: Backglass iPhone -->
+      <div class="service-card bg-gradient-to-br from-violet-100 to-cyan-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="iphone">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
+              <i class="fas fa-layer-group text-gray-600 text-xl"></i>
+            </div>
+            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 350.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition">
+            Backglass iPhone
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Penukaran Backglass iPhone kualiti gred Original menggunakan Mesin Laser automatik yang lebih selamat berbanding manual untuk mengelakkan risiko kerosakan komponen lain. Ambil masa 2 jam, sebarang model dan warna boleh dipilih.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Saya%20nak%20tanya%20tentang%20perkhidmatan%20Backglass%20iPhone" 
+               class="inline-flex items-center text-primary font-semibold hover:text-opacity-80 transition">
+              Buat Tempahan
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">iPhone</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 9: Apple iWatch Repair -->
+      <div class="service-card bg-gradient-to-br from-violet-100 to-cyan-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="aksesori">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center">
+              <i class="fas fa-clock text-cyan-600 text-xl"></i>
+            </div>
+            <span class="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 450.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition">
+            Apple iWatch Repair
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Memperbaiki atau menggantikan komponen yang rosak pada Apple iWatch. Seperti peranti elektronik lain, Apple iWatch boleh mengalami pelbagai jenis kerosakan, dari masalah skrin hingga masalah bateri atau perisian.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Saya%20nak%20tanya%20tentang%20perkhidmatan%20Apple%20iWatch%20Repair" 
+               class="inline-flex items-center text-primary font-semibold hover:text-opacity-80 transition">
+              Buat Tempahan
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-cyan-100 text-cyan-700 px-2 py-1 rounded text-xs">Apple</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 10: Genuine Apple Part -->
+      <div class="service-card bg-gradient-to-br from-violet-100 to-cyan-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100" data-category="aksesori">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
+              <i class="fab fa-apple text-amber-600 text-xl"></i>
+            </div>
+            <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-semibold">
+              Daripada RM 429.00
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition">
+            Genuine Apple Part
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Mempunyai alat ganti Genuine Apple Parts untuk iPhone, iPad ready stock alat ganti seperti camera, battery, screen dan body. Kualiti asli Apple dengan jaminan kualiti terjamin.
+          </p>
+          <div class="flex items-center justify-between">
+            <a href="https://wa.me/60122626434?text=Saya%20nak%20tanya%20tentang%20perkhidmatan%20Genuine%20Apple%20Part" 
+               class="inline-flex items-center text-primary font-semibold hover:text-opacity-80 transition">
+              Buat Tempahan
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <div class="flex gap-2">
+              <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">Original</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+<!--- CTA Button WhatsApp --->
+    <div class="text-center mt-12">
+      <a href="https://wa.me/60122626434?text=Hai,%20saya%20nak%20tanya%20lebih%20lanjut%20tentang%20*_semua%20perkhidmatan%20pembaikan%20telefon._*" 
+         class="inline-flex items-center bg-green-500 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+        <i class="fab fa-whatsapp mr-3 text-4xl"></i>
+         Untuk lebih lanjut semua Perkhidmatan servis
+      </a>
+      <p class="text-gray-500 mt-4 text-sm">
+        Semua harga adalah bermula dari, harga sebenar bergantung kepada model dan kerosakan peranti
+      </p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- AI Chatbot Section -->
+  <section id="chatbot" class="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-primary mb-4">AI Pembantu Servis 24/7</h2>
+      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        Tanya sebarang soalan tentang servis kami dan dapatkan jawapan segera!
+      </p>
+      
+      <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div class="bg-primary text-white p-4 flex items-center">
+          <div class="w-10 h-10 rounded-full bg-blue-400 flex items-center justify-center mr-3">
+            <i class="fas fa-robot text-white text-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-bold">Pembantu AI SG Mobile</h3>
+            <p class="text-sm opacity-90">Sentiasa sedia membantu</p>
+          </div>
+        </div>
+        
+        <div class="chat-container p-5 space-y-4" id="chat-messages">
+          <div class="flex">
+            <div class="bg-gray-100 rounded-2xl rounded-tl-none px-5 py-3 max-w-xs md:max-w-md shadow">
+              <p>Helo! Saya adalah AI Pembantu Servis 24/7. Bagaimana saya boleh membantu anda hari ini?</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="p-2 border-t flex">
+          <input type="text" id="user-input" class="flex-1 border rounded-l-xl px-1 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Taip soalan anda...">
+          <button id="send-btn" class="bg-primary text-white px-6 py-3 rounded-r-xl hover:bg-blue-700 transition flex items-center">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        
+        <div class="p-4 bg-gray-50 border-t text-center">
+          <button id="speak-btn" class="text-primary hover:text-blue-700 font-medium flex items-center mx-auto">
+            <i class="fas fa-volume-up mr-2"></i> Baca Jawapan Terakhir
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="lokasi" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-primary mb-4">Cari Kami</h2>
+      <p class="text-center text-gray-600 mb-12">Dapatkan arahan pemanduan segera ke kedai kami</p>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="aspect-w-16 aspect-h-9 mb-8 rounded-2xl overflow-hidden shadow-xl">
+          <div class="bg-gray-200 flex items-center justify-center h-full">
+            <div class="text-center p-8">
+              <i class="fas fa-map-marked-alt text-6xl text-primary mb-4"></i>
+              <p class="text-xl font-medium">Peta Lokasi SG Mobile Fix Setia Alam</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <a href="https://maps.app.goo.gl/ACMa62PiTNtAA1QH7?g_st=atm" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg flex items-center justify-center transition transform hover:scale-105">
+            <i class="fab fa-google mr-3 text-2xl"></i> Google Maps
+          </a>
+          <a href="https://ul.waze.com/ul?place=ChIJt-tIohRRzDERaLetgu7BbiM&ll=3.12530770%2C101.46937320&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg flex items-center justify-center transition transform hover:scale-105">
+            <i class="fab fa-waze mr-3 text-2xl"></i> Waze
+          </a>
+        </div>
+        
+        <div class="text-center mt-12">
+          <div class="inline-flex items-center bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">
+            <i class="fas fa-star text-yellow-400 mr-2"></i>
+            <span class="font-semibold">Penilaian Pelanggan: 4.9/5.0 (150+ Ulasan)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-2 text-center">
+      <div class="text-xl font-bold"><div class = "fas fa-tools mr-2  text-gray-400"></div>SG Mobile Fix Setia Alam</div>
+      <p class="text-gray-400 mb-4 text-xs font-bold">Premium Phone Service Repair</p>
+      <div class="flex justify-center space-x-6 mb-6">
+<a href="https://wa.me/60122626434" class="text-blue-400 hover:text-white transition">
+          <i class="fab fa-whatsapp text-xl"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61575714642080" class="text-blue-400 hover:text-white transition">
+          <i class="fab fa-facebook-f text-xl"></i>
+        </a>
+        <a href="https://www.instagram.com/sgmobilefixsetiaalam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-blue-400 hover:text-white transition">
+          <i class="fab fa-instagram text-xl"></i>
+        </a>
+        <a href="https://www.tiktok.com/@sgmobilesetiaalam?lang=en&is_from_webapp=1&sender_device=mobile&sender_web_id=7597472431498937857" class="text-blue-400 hover:text-white transition">
+          <i class="fab fa-tiktok text-xl"></i>
+        </a>
+      </div>
+      <p class="text-gray-500  text-xs">
+        &copy; <span id="current-year"></span> SG Mobile Fix Setia Alam. Hak Cipta Terpelihara.
+      </p>
+      <p class="text-gray-500 text-xs">
+        &trade; SG Mobile Fix Setia Alam - Premium Phone Service Repair
+      </p>
+<p class = "text-gray-500 text-xs">Pembina Platform: <i class = "fab fa-telegram mr-1 text-sm"></i><a href = "https://t.me/johansetia"><b class= " text-blue-400 text-xs hover:underline transition hover:text-white transition"> @Johan setia</b></a></p>
+    </div>
+  </footer>
+
+<!-- sudah dipisahkan -->
+<!--<script>-->
+
+
+<!-- j.s -->
+
+
+<!--</script>-->
+</body>
+</html>
