@@ -1,3 +1,48 @@
+// Toggle mobile menu (hamburger)
+  (function(){
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  })();
+
+  // Share button (Web Share API with clipboard fallback)
+  (function(){
+    const shareBtn = document.getElementById('share-btn');
+    if (!shareBtn) return;
+    shareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: document.title,
+        text: 'SG Mobile Fix Setia Alam',
+        url: location.href
+      };
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+          return;
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(location.href);
+          alert('Link telah disalin ke papan keratan.');
+          return;
+        }
+        // fallback copy
+        const tmp = document.createElement('input');
+        document.body.appendChild(tmp);
+        tmp.value = location.href;
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+        alert('Link telah disalin ke papan keratan.');
+      } catch (err) {
+        console.error('Share failed:', err);
+        alert('Tidak dapat kongsi pautan — cuba salin secara manual.');
+      }
+    });
+  })();
 
 // =========================================
 // 📌 Library css tailwind 
