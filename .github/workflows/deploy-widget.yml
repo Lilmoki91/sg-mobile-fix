@@ -12,24 +12,27 @@ jobs:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
 
-      - name: 📤 Upload widget ke Pinata (guna curl)
+      - name: 📤 Upload SEMUA fail dalam folder widget ke Pinata
         env:
           PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
           PINATA_SECRET_KEY: ${{ secrets.PINATA_SECRET_KEY }}
         run: |
-          # Cari fail dalam folder widget/
-          FILES=$(find ./widget/ -type f)
+          echo "📁 Auto-detect semua fail dalam folder widget/"
           
-          # Bina arahan curl untuk setiap fail
-          for FILE in $FILES; do
-            echo "📤 Upload: $FILE"
-            curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
-              -H "pinata_api_key: $PINATA_API_KEY" \
-              -H "pinata_secret_api_key: $PINATA_SECRET_KEY" \
-              -F "file=@$FILE" \
-              -F "pinataMetadata={\"name\": \"$(basename $FILE)\"}" \
-              -F "pinataOptions={\"cidVersion\": 1, \"wrapWithDirectory\": true}"
-            echo ""
+          cd sg-mobile-fix/widget/
+          
+          # Loop melalui SEMUA fail dalam folder
+          for FILE in *; do
+            if [ -f "$FILE" ]; then
+              echo "📤 Upload: $FILE"
+              curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+                -H "pinata_api_key: $PINATA_API_KEY" \
+                -H "pinata_secret_api_key: $PINATA_SECRET_KEY" \
+                -F "file=@$FILE" \
+                -F "pinataMetadata={\"name\": \"$FILE\"}" \
+                -F "pinataOptions={\"cidVersion\": 1}"
+              echo ""
+            fi
           done
           
-          echo "✅ Selesai!"
+          echo "✅ Selesai! Semua fail telah di-upload."
