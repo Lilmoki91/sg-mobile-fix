@@ -12,16 +12,15 @@ jobs:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
 
-      - name: 📤 Upload SEMUA fail dalam folder widget ke Pinata
+      - name: 📤 Upload folder widget ke Pinata
         env:
           PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
           PINATA_SECRET_KEY: ${{ secrets.PINATA_SECRET_KEY }}
         run: |
-          echo "📁 Auto-detect semua fail dalam folder widget/"
+          echo "📁 Upload semua fail dalam folder widget/"
           
-          cd sg-mobile-fix/widget/
+          cd widget
           
-          # Loop melalui SEMUA fail dalam folder
           for FILE in *; do
             if [ -f "$FILE" ]; then
               echo "📤 Upload: $FILE"
@@ -35,4 +34,4 @@ jobs:
             fi
           done
           
-          echo "✅ Selesai! Semua fail telah di-upload."
+          echo "✅ Selesai! Semua fail dalam widget/ telah di-upload."
