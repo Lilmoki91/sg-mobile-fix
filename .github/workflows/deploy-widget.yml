@@ -1,4 +1,4 @@
-name: 📤 Deploy Widget ke IPFS (Direct + Pin)
+name: 📤 Deploy Widget ke IPFS (Direct + Zip Pin)
 
 on:
   push:
@@ -12,58 +12,39 @@ jobs:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🌐 Setup IPFS + Upload + Pin ke Pinata
+      - name: 🗜️ Mampatkan folder widget
+        run: |
+          echo "📁 Mampatkan folder widget/ ke widget.zip..."
+          cd widget
+          zip -r ../widget.zip .
+          cd ..
+          echo "✅ widget.zip sedia."
+          echo "📁 Saiz fail: $(du -h widget.zip | cut -f1)"
+
+      - name: 📤 Upload widget.zip ke Pinata
         env:
           PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
           PINATA_SECRET_KEY: ${{ secrets.PINATA_SECRET_KEY }}
         run: |
-          # ==========================================
-          # 1. SETUP IPFS KUBO
-          # ==========================================
-          echo "📁 Memasang IPFS Kubo..."
-          wget -q https://dist.ipfs.tech/kubo/v0.30.0/kubo_v0.30.0_linux-amd64.tar.gz
-          tar -xzf kubo_v0.30.0_linux-amd64.tar.gz
-          cd kubo
-          sudo bash install.sh
-          ipfs init
-          ipfs daemon --offline &
-          sleep 5
-          cd ..
-          echo "✅ IPFS Kubo sedia"
-
-          # ==========================================
-          # 2. UPLOAD FOLDER WIDGET KE IPFS
-          # ==========================================
-          echo "📁 Upload folder widget/ ke IPFS..."
-          ipfs add -r widget/ --cid-version 1 > ipfs_output.txt
+          echo "📤 Upload widget.zip ke Pinata..."
           
-          CID=$(tail -n 1 ipfs_output.txt | awk '{print $2}')
-          echo "📁 CID Folder: $CID"
-          
-          if [ -z "$CID" ]; then
-            echo "❌ CID kosong!"
-            exit 1
-          fi
-          
-          echo "🔗 URL: https://ipfs.io/ipfs/$CID/"
-
-          # ==========================================
-          # 3. PIN CID DI PINATA
-          # ==========================================
-          echo "📌 Pin CID: $CID di Pinata..."
-          
-          RESPONSE=$(curl -s -X POST "https://api.pinata.cloud/pinning/pinByHash" \
+          # Hantar fail ZIP
+          RESPONSE=$(curl -s -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
             -H "pinata_api_key: $PINATA_API_KEY" \
             -H "pinata_secret_api_key: $PINATA_SECRET_KEY" \
-            -H "Content-Type: application/json" \
-            -d "{\"hashToPin\": \"$CID\"}")
+            -F "file=@widget.zip" \
+            -F "pinataMetadata={\"name\": \"widget-folder-backup\"}" \
+            -F "pinataOptions={\"cidVersion\": 1}")
           
           echo "Respons: $RESPONSE"
           
-          if echo "$RESPONSE" | grep -q "error"; then
-            echo "❌ Gagal pin CID di Pinata: $RESPONSE"
+          # Semak jika berjaya
+          if echo "$RESPONSE" | grep -q "IpfsHash"; then
+            CID=$(echo $RESPONSE | grep -o '"IpfsHash":"[^"]*"' | cut -d'"' -f4)
+            echo "✅ BERJAYA!"
+            echo "📁 CID: $CID"
+            echo "🔗 URL: https://gateway.pinata.cloud/ipfs/$CID"
+          else
+            echo "❌ Gagal: $RESPONSE"
             exit 1
           fi
-          
-          echo "✅ BERJAYA! CID dipin di Pinata."
-          echo "📁 CID: $CID"
