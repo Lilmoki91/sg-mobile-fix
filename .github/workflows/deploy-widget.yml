@@ -1,27 +1,56 @@
-name: 📤 Deploy Widget ke IPFS (1 CID)
+name: 📤 Deploy Widget ke IPFS (Direct + Pin)
 
 on:
   push:
     branches: [main]
 
 jobs:
-  deploy:
+  deploy-to-ipfs:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Upload folder widget ke IPFS
+      - name: 🌐 Setup IPFS (Kubo)
+        run: |
+          echo "📁 Memasang IPFS Kubo..."
+          wget https://dist.ipfs.tech/kubo/v0.30.0/kubo_v0.30.0_linux-amd64.tar.gz
+          tar -xvzf kubo_v0.30.0_linux-amd64.tar.gz
+          cd kubo
+          sudo bash install.sh
+          ipfs init
+          ipfs daemon --offline &
+          sleep 5
+          echo "✅ IPFS Kubo sedia"
+
+      - name: 📤 Upload folder widget ke IPFS (Direct)
+        run: |
+          echo "📁 Upload folder widget/ ke IPFS..."
+          
+          # Upload folder sebagai direktori
+          ipfs add -r widget/ --cid-version 1 --pin true > ipfs_output.txt
+          
+          # Dapatkan CID folder (baris terakhir)
+          CID=$(tail -n 1 ipfs_output.txt | awk '{print $2}')
+          
+          echo "📁 CID Folder: $CID"
+          echo "CID=$CID" >> $GITHUB_ENV
+          
+          echo "🔗 URL: https://ipfs.io/ipfs/$CID/"
+
+      - name: 📌 Pin CID di Pinata (Backup)
         env:
           PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
           PINATA_SECRET_KEY: ${{ secrets.PINATA_SECRET_KEY }}
         run: |
-          cd widget
-          curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+          echo "📌 Pin CID ${{ env.CID }} di Pinata..."
+          
+          curl -X POST "https://api.pinata.cloud/pinning/pinByHash" \
             -H "pinata_api_key: $PINATA_API_KEY" \
             -H "pinata_secret_api_key: $PINATA_SECRET_KEY" \
-            -F "file=@index.html" \
-            -F "file=@css.style" \
-            -F "file=@script.js" \
-            -F "file=@ZORD-TERMINAL.webp" \
-            -F "pinataMetadata={\"name\": \"widget\"}" \
-            -F "pinataOptions={\"cidVersion\": 1, \"wrapWithDirectory\": true}"
+            -H "Content-Type: application/json" \
+            -d "{\"hashToPin\": \"${{ env.CID }}\"}"
+          
+          echo ""
+          echo "✅ CID dipin di Pinata!"
