@@ -1,37 +1,47 @@
-name: 📤 Deploy Widget ke IPFS
+name: 📤 Deploy Widget ke Pinata
 
 on:
   push:
     branches: [main]
 
 jobs:
-  deploy-to-ipfs:
+  deploy-to-pinata:
     runs-on: ubuntu-latest
     
     steps:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🌐 Setup IPFS + Upload Folder widget
+      - name: 📤 Upload folder widget ke Pinata
+        env:
+          PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
+          PINATA_SECRET_KEY: ${{ secrets.PINATA_SECRET_KEY }}
         run: |
-          # Pasang IPFS Kubo
-          wget -q https://dist.ipfs.tech/kubo/v0.30.0/kubo_v0.30.0_linux-amd64.tar.gz
-          tar -xzf kubo_v0.30.0_linux-amd64.tar.gz
-          cd kubo
-          sudo bash install.sh
-          ipfs init
-          ipfs daemon --offline &
-          sleep 5
-          cd ..
-
-          # Upload folder widget sebagai direktori
-          echo "📤 Memuat naik folder widget/ ke IPFS..."
-          ipfs add -r widget/ --cid-version 1 > output.txt
-
-          # Dapatkan CID folder (baris terakhir)
-          CID=$(tail -n 1 output.txt | awk '{print $2}')
-
-          echo "✅ CID Folder: $CID"
-          echo "🔗 URL: https://ipfs.io/ipfs/$CID/"
-          echo "🔗 URL: https://cloudflare-ipfs.com/ipfs/$CID/"
+          echo "📤 Memuat naik folder widget/ ke Pinata..."
+          
+          # Senaraikan semua fail untuk dihantar serentak
+          FILES=""
+          for FILE in widget/*; do
+            if [ -f "$FILE" ]; then
+              FILENAME=$(basename "$FILE")
+              FILES="$FILES -F \"file=@$FILE;filename=$FILENAME\""
+              echo "📄 Tambah: $FILENAME"
+            fi
+          done
+          
+          # Hantar SEMUA fail serentak sebagai satu direktori
+          eval "curl -X POST \"https://api.pinata.cloud/pinning/pinFileToIPFS\" \
+            -H \"pinata_api_key: $PINATA_API_KEY\" \
+            -H \"pinata_secret_api_key: $PINATA_SECRET_KEY\" \
+            $FILES \
+            -F \"pinataMetadata={\\\"name\\\": \\\"widget-folder\\\"}\" \
+            -F \"pinataOptions={\\\"cidVersion\\\": 1, \\\"wrapWithDirectory\\\": true}\" \
+            -o response.json"
+          
+          echo "✅ Respons dari Pinata:"
+          cat response.json
+          
+          # Dapatkan CID
+          CID=$(grep -o '"IpfsHash":"[^"]*"' response.json | cut -d'"' -f4)
+          echo "📁 CID: $CID"
           echo "🔗 URL: https://gateway.pinata.cloud/ipfs/$CID/"
